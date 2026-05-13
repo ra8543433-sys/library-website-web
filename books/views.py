@@ -10,10 +10,6 @@ def home(request):
 
 def search_books(request):
     return render(request, 'search_books.html')
-
-def book_details(request, pk):
-    return render(request, 'book_details.html')
-
 @login_required
 def user_borrowed(request):
     return render(request, 'user_borrowed.html')
@@ -59,3 +55,9 @@ def edit_book(request, id):
         return redirect("edit_book", id=id)
 
     return render(request, "edit_book.html", {"book": book})
+    
+from django.urls import path
+from . import views 
+urlpatterns = [
+    path('book-details/', views.book_details_view, name='book_details'),
+]
